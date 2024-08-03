@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- 🥂 Responsive Restaurant Website with Dark mode using HTML, CSS and JS.
+ -->
+    <main class="main">
+        <header class="header">
+            <a href="#" class="logo">Quiz.</a>
+            <nav class="nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">About</a>
+                <a href="#">Service</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+        <div class="container">
+            <section class="quiz-section">
+                <div class="quiz-box">
+                    
+                    <h1>Quiz</h1>
+                    <div class="quiz-header">
+                    <span>Quiz Website</span>
+                    <span class="header-score">Score: 0 / 5</span>
+                    </div>
+
+                <h2 class="question-text">What does HTML stand for?</h2>
+                
+                
+    <div class="option-list">
+        <!-- <div class="option" onclick="checkAnswer(this)">
+            <span>A.Hyper Text Markup Language</span>
+        </div>
+        <div class="option" onclick="checkAnswer(this)">
+            <span>B.Highly Textured Makeup Language</span>
+        </div>
+        <div class="option" onclick="checkAnswer(this)">
+            <span>C.Hyperlinking Text Markdown Language</span>
+        </div>
+        <div class="option" onclick="checkAnswer(this)">
+            <span>D.None of the above</span>
+        </div> -->
+    </div>
+                
+    <div class="quiz-footer">
+        <span class="question-total">1 of 5 Questions</span>
+        <button class="next-button">Next</button>
+    </div>
+    
+        
+               
+                </div>
+                <div class="list-language">
+        
+                    <h1>Select language quiz</h1>  
+              <select class="programming-language" name="programming-language">
+                <option value="python">Python</option>
+                <option value="Html">Html</option>
+                <option value="css">css</option>
+                <option value="javascript">JavaScript</option>
+                <option value="react">React</option>
+                <option value="laravel">Laravel</option>
+                <option value="php">PHP</option>
+                <option value="mysql">Mysql</option>
+
+              </select>
+                                <button type="button" class="Next">Next</button>
+
+                  </div>
+                <div class="result-quiz">
+                    <h2>Result</h2>
+                    <div class="percentage-container">
+                        <div class="circular-progress">
+                            <span class="progress-value">0%</span>
+                        </div>
+                        <span class="score-text">Your Score 0 out of 5 </span>
+                    </div>
+                    <div class="buttons">
+                        <button class="play-again">Play Again</button>
+                        <button class="goHome-btn">Go To Home </button>
+                    </div>
+
+
+                </div>
+              
+                
+         
+                
+
+                
+
+
+            </section>
+        
+        <section class="home">
+            <div class="home-content">
+                <h1>Programming Quiz.</h1>
+                <p>Get ready to tackle a variety of programming questions at different skill levels! This quiz covers a range of topics in programming languages, including HTML, CSS, and JavaScript. Whether you're just starting out as a beginner, advancing to an intermediate level, or ready to take on more challenging questions, this quiz has something for everyone.</p>
+                <button class="start-btn">Start Quiz</button>
+            </div>
+        </section>
+        </div>
+    </main>
+    <div class="popup-info">
+        <h2>Quiz Guide</h2>
+        <span class="info">1.Take a deep breath and relax before starting the quiz.</span>
+        <span class="info">2.Read each question carefully before answering.</span>
+        <span class="info">3.Try to answer each question to the best of your ability.</span>
+        <span class="info">4.Read each question thoroughly and understand what is being asked.</span>
+        <span class="info">5.Try to eliminate obvious wrong answers before making your selection.</span>
+        <div class="btn-group">
+            <button class="info-btn exit-btn">Exit Quiz</button>
+            <a href="#" class="info-btn continue-btn">Continue</a>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.querySelector('.start-btn');
+        const popupInfo = document.querySelector('.popup-info');
+        const exitBtn = document.querySelector('.exit-btn');
+        const main = document.querySelector('.main');
+        const continueBtn = document.querySelector('.continue-btn');
+        const quizSection = document.querySelector('.quiz-section');
+        const quizBox = document.querySelector('.quiz-box');
+        const resultQuiz = document.querySelector('.result-quiz');
+        const playAgain = document.querySelector('.play-again');
+        const goHome = document.querySelector('.goHome-btn');
+        const listLanguage=document.querySelector('.list-language');
+        const Next=document.querySelector('.Next');
+    
+        startBtn.onclick = () => {
+            popupInfo.classList.add('active');
+            main.classList.add('active');
+        };
+    
+        exitBtn.onclick = () => {
+            popupInfo.classList.remove('active');
+            main.classList.remove('active');
+        };
+    
+        goHome.onclick = () => {
+            quizSection.classList.remove('active');
+            resultQuiz.classList.remove('active');
+            questionCount = 0;
+            questionNumb = 1;
+            userScore = 0;
+            showQuestions(questionCount);
+            questionCounter(questionNumb);
+        };
+    
+        playAgain.onclick = () => {
+            quizBox.classList.add('active');
+            resultQuiz.classList.remove('active');
+    
+            questionCount = 0;
+            questionNumb = 1;
+            userScore = 0;
+            showQuestions(questionCount);
+            questionCounter(questionNumb);
+            headerScore();
+        };
+         Next.onclick = () => {
+            listLanguage.classList.remove('active');
+
+            quizSection.classList.add('active');
+            quizBox.classList.add('active');
+            headerScore();
+            popupInfo.classList.remove('active');
+            main.classList.remove('active');
+            showQuestions(0);
+            questionCounter(1);
+        };
+    
+        // continueBtn.onclick = () => {
+        //     quizSection.classList.add('active');
+        //     quizBox.classList.add('active');
+        //     headerScore();
+        //     popupInfo.classList.remove('active');
+        //     main.classList.remove('active');
+        //     showQuestions(0);
+        //     questionCounter(1);
+        // };
+        continueBtn.onclick = () => {
+            quizSection.classList.add('active');
+            listLanguage.classList.add('active');
+            headerScore();
+            popupInfo.classList.remove('active');
+            main.classList.remove('active');
+            showQuestions(0);
+            questionCounter(1);
+        };
+
+    
+        const nextBtn = document.querySelector('.next-button');
+        nextBtn.onclick = () => {
+            if (questionCount < questions.length - 1) {
+                questionCount++;
+                showQuestions(questionCount);
+                questionNumb++;
+                questionCounter(questionNumb);
+                nextBtn.classList.remove('active');
+            } else {
+                showResultBox();
+            }
+        };
+    
+        let questionCount = 0;
+        let questionNumb = 1;
+        let userScore = 0;
+        const optionList = document.querySelector('.option-list');
+    
+        // function showQuestions(index) {
+        //     const questionText = document.querySelector('.question-text');
+        //     questionText.textContent = `${questions[index].numb}.${questions[index].question}`;
+        //     let optionTag = `<div class='option'><span>${questions[index].options[0]}</span></div>
+        //     <div class='option'><span>${questions[index].options[1]}</span></div>
+        //     <div class='option'><span>${questions[index].options[2]}</span></div>
+        //     <div class='option'><span>${questions[index].options[3]}</span></div>`;
+        //     optionList.innerHTML = optionTag;
+        //     const option = document.querySelectorAll('.option');
+        //     for (let i = 0; i < option.length; i++) {
+        //         option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        //     }
+        // }
+        function showQuestions(index) {
+    const selectedLanguage = document.querySelector('.programming-language').value;
+
+    if (selectedLanguage.toLowerCase() === 'html' ) {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsHtml[index].numb}.${questionsHtml[index].question}`;
+        let optionTag = `<div class='option'><span>${questionsHtml[index].options[0]}</span></div>
+        <div class='option'><span>${questionsHtml[index].options[1]}</span></div>
+        <div class='option'><span>${questionsHtml[index].options[2]}</span></div>
+        <div class='option'><span>${questionsHtml[index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        };
+    }else if (selectedLanguage.toLowerCase() === 'python') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questions[index].numb}.${questions[index].question}`;
+        let optionTag = `<div class='option'><span>${questions[index].options[0]}</span></div>
+        <div class='option'><span>${questions[index].options[1]}</span></div>
+        <div class='option'><span>${questions[index].options[2]}</span></div>
+        <div class='option'><span>${questions[index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    } else if (selectedLanguage.toLowerCase() === 'css') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsCss[index].numb}.${questionsCss[index].question}`;
+        let optionTag = `<div class='option'><span>${questionsCss[index].options[0]}</span></div>
+        <div class='option'><span>${questionsCss[index].options[1]}</span></div>
+        <div class='option'><span>${questionsCss[index].options[2]}</span></div>
+        <div class='option'><span>${questionsCss[index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }else if (selectedLanguage.toLowerCase() === 'php') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsPhp [index].numb}.${questionsPhp [index].question}`;
+        let optionTag = `<div class='option'><span>${questionsPhp [index].options[0]}</span></div>
+        <div class='option'><span>${questionsPhp [index].options[1]}</span></div>
+        <div class='option'><span>${questionsPhp [index].options[2]}</span></div>
+        <div class='option'><span>${questionsPhp [index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }
+    else if (selectedLanguage.toLowerCase() === 'laravel') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsLaravel [index].numb}.${questionsLaravel [index].question}`;
+        let optionTag = `<div class='option'><span>${questionsLaravel [index].options[0]}</span></div>
+        <div class='option'><span>${questionsLaravel [index].options[1]}</span></div>
+        <div class='option'><span>${questionsLaravel [index].options[2]}</span></div>
+        <div class='option'><span>${questionsLaravel [index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }else if (selectedLanguage.toLowerCase() === 'react') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsReact [index].numb}.${questionsReact [index].question}`;
+        let optionTag = `<div class='option'><span>${questionsReact [index].options[0]}</span></div>
+        <div class='option'><span>${questionsReact [index].options[1]}</span></div>
+        <div class='option'><span>${questionsReact [index].options[2]}</span></div>
+        <div class='option'><span>${questionsReact [index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }else if (selectedLanguage.toLowerCase() === 'mysql') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsMysql [index].numb}.${questionsMysql [index].question}`;
+        let optionTag = `<div class='option'><span>${questionsMysql [index].options[0]}</span></div>
+        <div class='option'><span>${questionsMysql [index].options[1]}</span></div>
+        <div class='option'><span>${questionsMysql [index].options[2]}</span></div>
+        <div class='option'><span>${questionsMysql [index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }else if (selectedLanguage.toLowerCase() === 'javascript') {
+        const questionText = document.querySelector('.question-text');
+        questionText.textContent = `${questionsJavascript [index].numb}.${questionsJavascript [index].question}`;
+        let optionTag = `<div class='option'><span>${questionsJavascript [index].options[0]}</span></div>
+        <div class='option'><span>${questionsJavascript [index].options[1]}</span></div>
+        <div class='option'><span>${questionsJavascript [index].options[2]}</span></div>
+        <div class='option'><span>${questionsJavascript [index].options[3]}</span></div>`;
+        optionList.innerHTML = optionTag;
+        const option = document.querySelectorAll('.option');
+        for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute('onclick', 'getCheckAnswer(this)');
+        }
+    }
+
+}
+
+
+
+
+
+    
+function getCheckAnswer(answer) {
+    let userAns = answer.textContent;
+    let allOptions = optionList.children.length;
+    let selectedLanguage = document.querySelector('.programming-language').value.toLowerCase();
+
+    let currentQuestionSet = [];
+
+    // Determine the appropriate question set based on the selected language
+    switch (selectedLanguage) {
+        case 'html':
+            currentQuestionSet = questionsHtml;
+            break;
+        case 'python':
+            currentQuestionSet = questions;
+            break;
+        case 'css':
+            currentQuestionSet = questionsCss;
+            break;
+        case 'javascript':
+            currentQuestionSet = questionsJavascript;
+            break;
+        case 'laravel':
+            currentQuestionSet = questionsLaravel;
+            break;
+        case 'mysql':
+            currentQuestionSet = questionsMysql;
+            break;
+        case 'php':
+            currentQuestionSet = questionsPhp;
+            break;
+        case 'react':
+            currentQuestionSet = questionsReact;
+            break;
+        // Add cases for other languages if needed
+        default:
+            break;
+    }
+
+    // Check if questionCount is within the valid range
+    if (questionCount >= currentQuestionSet.length) {
+        console.error("Invalid questionCount.");
+        return; // Exit the function early
+    }
+
+    // Check user's answer
+    if (userAns === currentQuestionSet[questionCount].answer) {
+        answer.classList.add('correct');
+        userScore++;
+        headerScore();
+    } else {
+        answer.classList.add('incorrect');
+        // Mark the correct option
+        for (let i = 0; i < allOptions; i++) {
+            if (optionList.children[i].textContent == currentQuestionSet[questionCount].answer) {
+                optionList.children[i].classList.add('correct');
+            }
+        }
+    }
+
+    // Disable further interaction with options
+    for (let i = 0; i < allOptions; i++) {
+        optionList.children[i].classList.add('disabled');
+    }
+
+    // Activate the next button
+    nextBtn.classList.add('active');
+}
+
+    
+        function questionCounter(index) {
+            const questionTotal = document.querySelector('.question-total');
+            questionTotal.textContent = `${index} of ${questions.length} Questions`;
+        }
+    
+        function headerScore() {
+            const headerScore = document.querySelector('.header-score');
+            headerScore.textContent = `Score: ${userScore} / ${questions.length}`;
+        }
+    
+        function showResultBox() {
+            quizBox.classList.remove('active');
+            resultQuiz.classList.add('active');
+            const scoreText = document.querySelector('.score-text');
+            scoreText.textContent = `Your Score ${userScore} out of ${questions.length}`;
+            const circularProgress = document.querySelector('.circular-progress');
+            const progressValue = document.querySelector('.progress-value');
+            let progressStartValue = -1;
+            let progressEndValue = (userScore / questions.length) * 100;
+            let speed = 20;
+            let progressInterval = setInterval(() => {
+                progressStartValue++;
+                progressValue.textContent = `${progressStartValue}%`;
+                circularProgress.style.background = `conic-gradient(#1899d5 ${progressStartValue * 3.6}deg,rgba(255,255,255,.1)0deg)`;
+                if (progressStartValue == progressEndValue) {
+                    clearInterval(progressInterval);
+                }
+            }, speed);
+        }
+    </script>
+    
+  <script src="questionsJs.js"></script> 
+  <script src="questionsPython.js"></script> 
+
+  <script src="questionsHtml.js"></script> 
+  <script src="questionCss.js"></script>
+  <script src="questionsPhp.js"></script>
+  <script src="questionsReact.js"></script>
+  <script src="questionsLaravel.js"></script>
+  <script src="questionsMysql.js"></script>
+
+
+</body>
+</html>
